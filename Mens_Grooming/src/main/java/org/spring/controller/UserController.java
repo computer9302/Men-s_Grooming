@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("/Mens_Grooming")
 public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -24,15 +26,15 @@ public class UserController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@GetMapping("/register")
+	@GetMapping("/register.do")
 	public String showRegistrationForm() {
-		return "register";
+		return "Registration";
 	}
 	
-	@PostMapping("/register")
+	@PostMapping("/register.do")
 	public String registerUser(@RequestParam String Id, @RequestParam String password, @RequestParam String password2, @RequestParam String address, @RequestParam String phone_number, @RequestParam String email) {
 		
 		return "redirect:/login";
 	}
-	
+
 }
