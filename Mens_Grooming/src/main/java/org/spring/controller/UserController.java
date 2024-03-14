@@ -6,12 +6,16 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import biz.MemberBiz;
+import dto.MemberDto;
 
 
 /**
@@ -23,6 +27,12 @@ public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
+	@Autowired
+	private MemberBiz biz;
+	
+	@Autowired
+	private MemberDto dto;
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -32,7 +42,11 @@ public class UserController {
 	}
 	
 	@PostMapping("/register.do")
-	public String registerUser(@RequestParam String Id, @RequestParam String password, @RequestParam String password2, @RequestParam String address, @RequestParam String phone_number, @RequestParam String email) {
+	public String registerUser(@RequestParam("Id") String member_Id, @RequestParam("password") String pass_word, @RequestParam("password2") String pass_word2, @RequestParam("address") String address, @RequestParam("phone_number") String phone_number, @RequestParam("email") String e_mail) {
+
+		dto = new MemberDto(member_Id, pass_word, pass_word2, address, phone_number, e_mail);
+		
+		biz.join(dto);
 		
 		return "redirect:/login";
 	}
