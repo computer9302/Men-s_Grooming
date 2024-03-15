@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>User Registration</h2>
-	<form action="register" method="POST">
+	<form action="register.do" method="POST">
 		<label for="Id">Id:</label>
 		<input type="text" id="Id" name="Id" required><br><br>
 		

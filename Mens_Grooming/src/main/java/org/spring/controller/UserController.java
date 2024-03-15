@@ -30,8 +30,6 @@ public class UserController {
 	@Autowired
 	private MemberBiz biz;
 	
-	@Autowired
-	private MemberDto dto;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -44,11 +42,19 @@ public class UserController {
 	@PostMapping("/register.do")
 	public String registerUser(@RequestParam("Id") String member_Id, @RequestParam("password") String pass_word, @RequestParam("password2") String pass_word2, @RequestParam("address") String address, @RequestParam("phone_number") String phone_number, @RequestParam("email") String e_mail) {
 
+		MemberDto dto;
+		int res=0;
+		
 		dto = new MemberDto(member_Id, pass_word, pass_word2, address, phone_number, e_mail);
 		
-		biz.join(dto);
+		res=biz.join(dto);
 		
-		return "redirect:/login";
-	}
+		if(res>0) {
+			return "redirect:/login";
+		}else {
+		return "forward:/Registration";
+		}
 
+	}
+	
 }
