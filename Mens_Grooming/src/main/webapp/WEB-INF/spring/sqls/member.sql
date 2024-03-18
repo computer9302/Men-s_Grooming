@@ -14,6 +14,8 @@ CREATE TABLE STSMEMBER(
 
 INSERT INTO STSMEMBER VALUES('computer9302', '1234', '1234', '경기도 의정부시 오목로252', '01027378124', 'computer9302@gmail.com');
 
+delete form STSMEMBER where MEMBER_ID='computer9302';
+
 SELECT * FROM STSMEMBER;
 
 
