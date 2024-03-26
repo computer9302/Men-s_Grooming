@@ -22,7 +22,6 @@ import dto.MemberDto;
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping("/Mens_Grooming")
 public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
