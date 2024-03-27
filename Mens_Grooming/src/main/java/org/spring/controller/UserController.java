@@ -26,10 +26,20 @@ public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
+	
+	private final MemberBiz biz;
+	
 	@Autowired
-	private MemberBiz biz;
-	
-	
+	public UserController(MemberBiz biz) {
+		this.biz = biz;
+	}
+
+	public UserController() {
+		// TODO Auto-generated constructor stub
+		this.biz=null;
+		UserController userController = new UserController(biz);
+	}
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */

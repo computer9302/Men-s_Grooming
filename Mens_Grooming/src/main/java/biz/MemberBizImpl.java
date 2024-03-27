@@ -10,9 +10,15 @@ import dto.MemberDto;
 @Service
 public class MemberBizImpl implements MemberBiz {
 	
-	@Autowired
-	private MemberDao dao;
 	
+	private final MemberDao dao;
+	
+	@Autowired
+	public MemberBizImpl(MemberDao dao) {
+		this.dao = dao;
+	}
+
+
 	@Override
 	public int join(MemberDto dto) {
 		return dao.join(dto);
