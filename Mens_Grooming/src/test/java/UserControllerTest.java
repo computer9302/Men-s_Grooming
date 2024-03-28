@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import biz.MemberBiz;
 import dto.MemberDto;
 import junit.framework.Assert;
+import static org.mockito.Mockito.mock;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = { "classpath:root-context.xml", "classpath:servlet-context.xml"})
@@ -20,13 +21,15 @@ public class UserControllerTest {
 
 	
 	private final UserController userController; 
-
-	@Autowired
+	private final MemberBiz memberBizMock;
+	
 	public UserControllerTest() {
-		this.userController = new UserController();
+		this.memberBizMock = mock(MemberBiz.class);
+		this.userController = new UserController(memberBizMock);
 	}
 
 
+	@Test
 	public void testUserController() {
 				//given
 				String member_id = "b1";
@@ -42,7 +45,7 @@ public class UserControllerTest {
 				
 				//then
 				
-				assertEquals(memberDto, "redirect:/login");
+				assertEquals("redirect:/login", memberDto);
 			}
 	
 }		
