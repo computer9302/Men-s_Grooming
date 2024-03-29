@@ -32,16 +32,16 @@ public class UserControllerTest {
 	@Test
 	public void testUserController() {
 				//given
-				String member_id = "b1";
-				String pass_word = "1234";
-				String pass_word2 = "1234";
+				String member_id = "eee";
+				String password = "1234";
+				String password2 = "1234";
 				String address = "의정부시 오목로";
 				String phone_number = "010-2737-8124";
 				String e_mail = "computer9302@gmail.com";
 		
 		
 				//when
-				String memberDto = userController.registerUser(member_id, pass_word, pass_word2, address, phone_number, e_mail);
+				String memberDto = userController.registerUser(member_id, password, password2, address, phone_number, e_mail);
 				
 				//then
 				

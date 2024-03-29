@@ -29,7 +29,7 @@ public class UserController {
 	
 	
 	private final MemberBiz biz;
-	
+
 	@Autowired
 	public UserController(MemberBiz biz) {
 
