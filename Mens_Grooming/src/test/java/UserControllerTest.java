@@ -7,42 +7,56 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.spring.controller.UserController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import biz.MemberBiz;
 import dto.MemberDto;
 import junit.framework.Assert;
-import static org.mockito.Mockito.mock;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = { "classpath:root-context.xml", "classpath:servlet-context.xml"})
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
 public class UserControllerTest {
 
+	@Autowired
+	private MockMvc mockMvc;
 	
-	private final UserController userController; 
-	private final MemberBiz memberBizMock;
-	
-	public UserControllerTest() {
-		this.memberBizMock = mock(MemberBiz.class);
-		this.userController = new UserController(memberBizMock);
-	}
-
+	String memberDto;
 
 	@Test
-	public void testUserController() {
+	public void testUserController() throws Exception {
 				//given
+		/*
 				String member_id = "eee";
 				String password = "1234";
 				String password2 = "1234";
-				String address = "의정부시 오목로";
-				String phone_number = "010-2737-8124";
-				String e_mail = "computer9302@gmail.com";
-		
+				String address = "경기도 의정부시 금오동";
+				String phone_number="01027378124";
+				String email = "computer9302@gmail.com";
+		*/	
 		
 				//when
-				String memberDto = userController.registerUser(member_id, password, password2, address, phone_number, e_mail);
-				
+		
+		       memberDto = ((ResultActions) ((MockHttpServletRequestBuilder) mockMvc.perform(MockMvcRequestBuilders.post("/register")))
+				.param("Id", "eee")
+				.param("password", "1234")
+				.param("password2", "1234")
+				.param("address", "경기도 의정부시 금오동")
+				.param("phone_number", "01027378124")
+				.param("email", "computer9302@gmail.com")
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED))
+				.andExpect(MockMvcResultMatchers.status().isOk());
 				//then
 				
 				assertEquals("redirect:/login", memberDto);

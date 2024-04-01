@@ -1,7 +1,7 @@
 package dto;
 
 public class MemberDto {
-	private String MEMBER_ID;
+	private String member_id;
 	private String pass_word;
 	private String pass_word2;
 	private String address;
@@ -16,7 +16,7 @@ public class MemberDto {
 	public MemberDto(String member_id, String pass_word, String pass_word2, String address, String phone_number,
 			String e_mail) {
 		super();
-		this.MEMBER_ID = member_id;
+		this.member_id = member_id;
 		this.pass_word = pass_word;
 		this.pass_word2 = pass_word2;
 		this.address = address;
@@ -25,11 +25,11 @@ public class MemberDto {
 	}
 
 	public String getMember_id() {
-		return MEMBER_ID;
+		return member_id;
 	}
 
 	public void setMember_id(String member_id) {
-		this.MEMBER_ID = member_id;
+		this.member_id = member_id;
 	}
 
 	public String getPass_word() {
