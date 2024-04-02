@@ -48,15 +48,16 @@ public class UserControllerTest {
 		
 				//when
 		
-		       memberDto = ((ResultActions) ((MockHttpServletRequestBuilder) mockMvc.perform(MockMvcRequestBuilders.post("/register")))
-				.param("Id", "eee")
-				.param("password", "1234")
-				.param("password2", "1234")
-				.param("address", "경기도 의정부시 금오동")
-				.param("phone_number", "01027378124")
-				.param("email", "computer9302@gmail.com")
-				.contentType(MediaType.APPLICATION_FORM_URLENCODED))
-				.andExpect(MockMvcResultMatchers.status().isOk());
+		     	String memberDto = ((ResultActions) ((MockHttpServletRequestBuilder) mockMvc.perform(MockMvcRequestBuilders.post("/register")))
+		     	.param("Id","eee")
+		     	.param("password", "1234")
+		     	.param("password2", "1234")
+		     	.param("address", "경기도 의정부시 금오동")
+		     	.param("phone_number", "010-2737-8124")
+		     	.param("email", "computer9302@gmail.com")
+		     	.contentType(MediaType.APPLICATION_FORM_URLENCODED))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andReturn().getResponse().getContentAsString();
 				//then
 				
 				assertEquals("redirect:/login", memberDto);

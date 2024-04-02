@@ -26,6 +26,11 @@
 					<groupId>commons-logging</groupId>
 					<artifactId>commons-logging</artifactId>
 				 </exclusion>
+				 
+				 <exclusion>
+				 	<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				 </exclusion>
 			</exclusions>
 		</dependency>
 		
@@ -113,24 +118,29 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>	
 		
-		<!-- Logging -->
+		<!-- Logging 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${org.slf4j-version}</version>
 		</dependency>
+
+		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+-->
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -191,11 +201,14 @@
     <scope>test</scope>
 </dependency>
 
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-test</artifactId>
-		<version>4.3.0.RELEASE</version>
-	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>6.1.4</version>
+    <scope>test</scope>
+</dependency>
+
 	
 	<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
 <dependency>
