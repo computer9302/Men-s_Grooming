@@ -1,9 +1,10 @@
+
 import static org.junit.Assert.assertEquals;
 
 import javax.management.loading.PrivateClassLoader;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.spring.controller.UserController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -21,7 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import biz.MemberBiz;
 import dto.MemberDto;
-import junit.framework.Assert;
+
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = { "classpath:root-context.xml", "classpath:servlet-context.xml"})
@@ -34,7 +36,7 @@ public class UserControllerTest {
 	
 	String memberDto;
 
-	@Test
+	@org.junit.Test
 	public void testUserController() throws Exception {
 				//given
 		/*
@@ -60,7 +62,7 @@ public class UserControllerTest {
 				.andReturn().getResponse().getContentAsString();
 				//then
 				
-				assertEquals("redirect:/login", memberDto);
+		     	assertEquals("redirect:/login", memberDto);
 			}
 	
 }		
