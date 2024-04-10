@@ -21,7 +21,6 @@ import dto.MemberDto;
  * Handles requests for the application home page.
  */
 @Controller
-@SpringBootApplication
 public class UserController {
 	
 	
