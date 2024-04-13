@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
 Built-By: compu
 Build-Jdk: 17.0.2
+Implementation-Title: Mens_Grooming
+Implementation-Version: 1.0.0-BUILD-SNAPSHOT
+Implementation-Vendor-Id: org.spring
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/controller
 Created-By: Maven Integration for Eclipse
 
