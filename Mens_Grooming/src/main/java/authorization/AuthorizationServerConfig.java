@@ -15,7 +15,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		.inMemory()
 		.withClient("client")
 		.secret("{noop}secret")
-		.redirectUris("http://localhost:8080/callback")
+		.redirectUris("http://localhost:8000/callback")
 		.authorizedGrantTypes("authorization_code")
 		.scopes("read_profile");
 	}

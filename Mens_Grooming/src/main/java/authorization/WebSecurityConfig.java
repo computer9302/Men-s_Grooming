@@ -22,6 +22,7 @@ import lombok.AllArgsConstructor;
 @EnableWebSecurity
 @AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+	
 
 		private static final Logger log = LoggerFactory.getLogger(WebSecurityConfig.class);
 
@@ -35,7 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 			.httpBasic();
 			
-		makeAuthorizationRequestHeader();
+			makeAuthorizationRequestHeader();
+			
+		
 		}
 		
 		@Bean
@@ -57,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			return manager;
 		}
 		
-		private static void makeAuthorizationRequestHeader() {
+		private void makeAuthorizationRequestHeader() {
 			String oauthClientId = "client";
 			String oauthClientSecret = "secret";
 			
