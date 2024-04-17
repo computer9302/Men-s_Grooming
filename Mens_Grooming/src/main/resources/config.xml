@@ -8,6 +8,11 @@
 	<!-- 1. DB 정보 적은 properies 경로 알려준다. -->
 	<properties resource="db/db.properties"></properties>
 	
+		<!-- 5. 데이터베이스 컬럼명 자동 변환 java 변수명 자동 매핑 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"></setting>
+	</settings>
+	
 	<!-- 2. Dto 별칭부여 -->
 	<typeAliases>
 		<typeAlias type="dto.MemberDto" alias="MemberDto"/>
@@ -30,4 +35,5 @@
 	<mappers>
 		<mapper resource="db/member-mapper.xml"></mapper>
 	</mappers>
+	
 </configuration>
