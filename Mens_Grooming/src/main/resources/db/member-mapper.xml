@@ -9,5 +9,10 @@
 		INSERT INTO STSMEMBER
 		VALUES(#{member_id}, #{pass_word}, #{pass_word2}, #{address}, #{phone_number}, #{e_mail})
 	</insert>
+	
+	<insert id="insertSns" parameterType="Member">
+		INSERT INTO STSMEMBER
+		VALUES(#{member_id}, #{pass_word}, #{pass_word2}, #{address}, #{phone_number}, #{e_mail})
+	</insert>
 
 </mapper>
