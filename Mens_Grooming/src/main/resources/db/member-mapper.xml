@@ -11,8 +11,12 @@
 	</insert>
 	
 	<insert id="insertSns" parameterType="Member">
-		INSERT INTO STSMEMBER
-		VALUES(#{member_id}, #{pass_word}, #{pass_word2}, #{address}, #{phone_number}, #{e_mail})
+		INSERT INTO OAUTH_USER_DETAILS
+		VALUES(#{name},#{password}, #{e_mail})
 	</insert>
+
+	<select id="select" parameterType="Member">
+	SELECT * FROM OAUTH_USER_DETAILS
+	</select>
 
 </mapper>

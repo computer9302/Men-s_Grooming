@@ -8,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -28,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
-		private final MemberService memberService;
+		private final memberService memberService = null;
 	
 		@Bean
 		public PasswordEncoder passwordEncoder() {
@@ -53,5 +55,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 			auth.userDetailsService(memberService)
 						.passwordEncoder(passwordEncoder());
+		}
+		
+		@Bean
+		public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+			return configuration.getAuthenticationManager();
 		}
 }
