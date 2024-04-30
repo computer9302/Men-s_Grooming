@@ -6,21 +6,28 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import biz.MemberBiz;
+import dto.LoginDto;
 import dto.MemberDto;
+import dto.SignUpDto;
+import lombok.RequiredArgsConstructor;
 
 
 /**
  * Handles requests for the application home page.
  */
+@RequestMapping("/api/v1/user")
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 	
 	
@@ -57,6 +64,16 @@ public class UserController {
 		return "forward:/Registration";
 		}
 
+	}
+	
+	@PostMapping(value = {"/register", "/signup"})
+	public ResponseEntity<?> register(@RequestBody SignUpDto signUpDto) {
+		return ResponseEntity.ok(biz.register(signUpDto));
+	}
+	
+	@PostMapping(value = {"/login", "/signin"})
+	public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
+		return ResponseEntity.ok(biz.login(loginDto))
 	}
 	
 }
