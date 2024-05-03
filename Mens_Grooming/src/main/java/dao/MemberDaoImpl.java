@@ -6,8 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import dto.LoginDto;
 import dto.Member;
 import dto.MemberDto;
+import dto.SignUpDto;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -30,11 +32,11 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public int register(Member member) {
+	public int register(SignUpDto signUpDto) {
 		int res = 0;
 		
 		try {
-			res = SqlSession.insert(NAMESPACE + "insertSns",member);
+			res = SqlSession.insert(NAMESPACE + "insertSns",signUpDto);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -48,6 +50,18 @@ public class MemberDaoImpl implements MemberDao {
 		
 		try {
 			res = SqlSession.selectOne(NAMESPACE + "select", email);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public Member login(LoginDto loginDto) {
+		Member res = null;
+		
+		try {
+			res = SqlSession.selectOne(NAMESPACE + "selectLogin" + loginDto);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

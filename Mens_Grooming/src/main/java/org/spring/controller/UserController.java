@@ -7,6 +7,7 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import biz.MemberBiz;
 import dto.LoginDto;
+import dto.Member;
 import dto.MemberDto;
 import dto.SignUpDto;
+import exception.ErrorCode;
+import exception.MemoAPIException;
 import lombok.RequiredArgsConstructor;
-
+import static passwordE
 
 /**
  * Handles requests for the application home page.
@@ -68,12 +72,23 @@ public class UserController {
 	
 	@PostMapping(value = {"/register", "/signup"})
 	public ResponseEntity<?> register(@RequestBody SignUpDto signUpDto) {
+		
+		if(biz.findByEmail(signUpDto.getEmail())!=null) {
+			throw new MemoAPIException(ErrorCode.DUPLICATED_ENTITY, "이미 존재하는 멤버입니다");
+		}
+		
+		Member member = null;
+		member.setName(signUpDto.getName());
+		member.setEmail(signUpDto.getEmail());
+		member.setPassword(pass)
+		
+		
 		return ResponseEntity.ok(biz.register(signUpDto));
 	}
 	
 	@PostMapping(value = {"/login", "/signin"})
 	public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
-		return ResponseEntity.ok(biz.login(loginDto))
+		return ResponseEntity.ok(biz.login(loginDto));
 	}
 	
 }

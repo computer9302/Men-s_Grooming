@@ -77,13 +77,14 @@ public class User {
 		this.email = email;
 	}
 
-	public RoleType getRole() {
+	public RoleType getRoleType() {
 		return role;
 	}
 
-	public void setRole(RoleType role) {
+	public void setRoleType(RoleType role) {
 		this.role = role;
 	}
+
 	
 	
 	

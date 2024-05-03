@@ -4,8 +4,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import dto.LoginDto;
 import dto.Member;
 import dto.MemberDto;
+import dto.SignUpDto;
 
 @Service
 public interface MemberBiz {
@@ -13,9 +15,11 @@ public interface MemberBiz {
 	public int join(MemberDto dto);
 	
 	// sns 회원가입
-	public int register(Member member);
+	public int register(SignUpDto signUpDto);
 	
 	// email 찾기
 	public Optional<Member> findByEmail(String email);
+	
+	public Member login(LoginDto loginDto);
 	
 }

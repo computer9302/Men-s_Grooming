@@ -10,13 +10,19 @@
 		VALUES(#{member_id}, #{pass_word}, #{pass_word2}, #{address}, #{phone_number}, #{e_mail})
 	</insert>
 	
-	<insert id="insertSns" parameterType="Member">
+	<insert id="insertSns" parameterType="signUpDto">
 		INSERT INTO OAUTH_USER_DETAILS
-		VALUES(#{name},#{password}, #{e_mail})
+		VALUES(#{name},#{password}, #{email})
 	</insert>
 
 	<select id="select" parameterType="Member">
 	SELECT * FROM OAUTH_USER_DETAILS
+	</select>
+	
+	<select id="selectLogin" parameterType="LoginDto">
+	SELECT * 
+	FROM OAUTH_USER_DETAILS 
+	WHERE EMAIL=#{email} and PASSWORD=#{password}
 	</select>
 
 </mapper>
