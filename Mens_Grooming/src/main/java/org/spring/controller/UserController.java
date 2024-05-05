@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import auth.AuthType;
 import biz.MemberBiz;
-import dto.AuthType;
 import dto.LoginDto;
 import dto.Member;
 import dto.MemberDto;

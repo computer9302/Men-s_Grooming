@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource.AuthenticationType;
 
+import auth.AuthType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
