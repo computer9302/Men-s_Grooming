@@ -17,14 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import biz.MemberBiz;
+import dto.AuthType;
 import dto.LoginDto;
 import dto.Member;
 import dto.MemberDto;
+import dto.RoleType;
 import dto.SignUpDto;
 import exception.ErrorCode;
 import exception.MemoAPIException;
 import lombok.RequiredArgsConstructor;
-import static passwordE
+
 
 /**
  * Handles requests for the application home page.
@@ -36,6 +38,7 @@ public class UserController {
 	
 	
 	private final MemberBiz biz;
+	private final PasswordEncoder passwordEncoder=null;
 
 	@Autowired
 	public UserController(MemberBiz biz) {
@@ -80,8 +83,10 @@ public class UserController {
 		Member member = null;
 		member.setName(signUpDto.getName());
 		member.setEmail(signUpDto.getEmail());
-		member.setPassword(pass)
+		member.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
+		member.setRole(AuthType.ROLE_USER);
 		
+		AuthVO authVO = AuthVO;
 		
 		return ResponseEntity.ok(biz.register(signUpDto));
 	}
