@@ -44,7 +44,7 @@ public class DatabaseConfig {
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource);
-		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*.xml"));
+		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:/db/**/*.xml"));
 	
 		//Mybatis config파일 위치
 		org.springframework.core.io.Resource myBatisConfig = new PathMatchingResourcePatternResolver().getResource("classpath:config.xml");
