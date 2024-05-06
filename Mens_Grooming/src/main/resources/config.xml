@@ -16,6 +16,9 @@
 	<!-- 2. Dto 별칭부여 -->
 	<typeAliases>
 		<typeAlias type="dto.MemberDto" alias="MemberDto"/>
+		<typeAlias type="dto.SignUpDto" alias="SignUpDto"/>
+		<typeAlias type="dto.Member" alias="Member"/>
+		<typeAlias type="dto.LoginDto" alias="LoginDto"/>
 	</typeAliases>
 	
 	<!-- 3. DB접속 설정 -->
