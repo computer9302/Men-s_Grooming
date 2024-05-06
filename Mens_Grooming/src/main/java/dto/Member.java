@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource.AuthenticationType;
 
+import auth.Auth;
 import auth.AuthType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,8 @@ public class Member {
 	
 	private AuthType role;
 	
-	private List<AuthVO> authList = new ArrayList<>();
+	//id 한개에 권한이 여러개일 이유가 없는데 왜 arrayList인가?
+	private List<Auth> authList = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -77,13 +79,16 @@ public class Member {
 		this.role = role;
 	}
 
-	public List<AuthVO> getAuthList() {
+	public List<Auth> getAuthList() {
 		return authList;
 	}
 
-	public void setAuthList(List<AuthVO> authList) {
+	public void setAuthList(List<Auth> authList) {
 		this.authList = authList;
 	}
 	
+	public void addMemberRole(Auth auth) {
+		authList.add(auth);
+	}
 	
 }

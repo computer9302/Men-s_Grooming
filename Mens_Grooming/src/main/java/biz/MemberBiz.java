@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import auth.Auth;
 import dto.LoginDto;
 import dto.Member;
 import dto.MemberDto;
@@ -21,5 +22,8 @@ public interface MemberBiz {
 	public Optional<Member> findByEmail(String email);
 	
 	public Member login(LoginDto loginDto);
+
+	// 왜 있는지 모르겠음 나중에 필요하다고 판단되면 구현할 것.
+	//public void insertAuth(Auth auth);
 	
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import auth.Auth;
 import auth.AuthType;
 import biz.MemberBiz;
 import dto.LoginDto;
@@ -74,7 +75,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value = {"/register", "/signup"})
-	public ResponseEntity<?> register(@RequestBody SignUpDto signUpDto) {
+	public ResponseEntity<?> register(@RequestBody SignUpDto signUpDto) throws MemoAPIException {
 		
 		if(biz.findByEmail(signUpDto.getEmail())!=null) {
 			throw new MemoAPIException(ErrorCode.DUPLICATED_ENTITY, "이미 존재하는 멤버입니다");
@@ -86,11 +87,19 @@ public class UserController {
 		member.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
 		member.setRole(AuthType.ROLE_USER);
 		
-		AuthVO authVO = AuthVO;
+		Auth auth = null;
+		auth.setUsername(signUpDto.getName());
+		auth.setAuth("ROLE_USER");
+		
+		// 왜 있는지 모르겠음. 나중에 필요하다고 판단되면 구현할것.
+		// biz.insertAuth(auth);
+		
+		member.addMemberRole(auth);
 		
 		return ResponseEntity.ok(biz.register(signUpDto));
 	}
 	
+	// 구현해야함.
 	@PostMapping(value = {"/login", "/signin"})
 	public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
 		return ResponseEntity.ok(biz.login(loginDto));
