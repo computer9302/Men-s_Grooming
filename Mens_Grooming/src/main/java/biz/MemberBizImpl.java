@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.provider.approval.InMemoryApprovalSto
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import auth.Auth;
+import auth.AuthType;
 import dao.MemberDao;
 import dto.LoginDto;
 import dto.Member;
@@ -43,7 +45,23 @@ public class MemberBizImpl implements MemberBiz {
 	
 	@Override
 	public int register(SignUpDto signUpDto) {
-		return dao.register(signUpDto);
+		
+		Member member = null;
+		member.setName(signUpDto.getName());
+		member.setEmail(signUpDto.getEmail());
+		member.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
+		member.setRole(AuthType.ROLE_USER);
+		
+		Auth auth = null;
+		auth.setUsername(signUpDto.getName());
+		auth.setAuth("ROLE_USER");
+		
+		// 왜 있는지 모르겠음. 나중에 필요하다고 판단되면 구현할것.
+		// biz.insertAuth(auth);
+		
+		member.addMemberRole(auth);
+		
+		return dao.register(member);
 	}
 	
 	@Override

@@ -32,7 +32,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public int register(SignUpDto signUpDto) {
+	public int register(Member member) {
 		int res = 0;
 		
 		try {

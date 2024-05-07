@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import biz.MemberBiz;
 import dto.Member;
+import dto.SignUpDto;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -18,14 +19,14 @@ public class memberService implements UserDetailsService{
 	
 	private final MemberBiz memberRepository = null;
 	
-	public void saveMember(Member member) {
+	public void saveMember(SignUpDto signUpDto) {
 		
-		validateDuplicateMember(member);
-		memberRepository.register(member);
+		validateDuplicateMember(signUpDto);
+		memberRepository.register(signUpDto);
 	}
 	
-	private void validateDuplicateMember(Member member) {
-		Optional<Member> byEmailOptional = memberRepository.findByEmail(member.getEmail());
+	private void validateDuplicateMember(SignUpDto signUpDto) {
+		Optional<Member> byEmailOptional = memberRepository.findByEmail(signUpDto.getEmail());
 		if(byEmailOptional.isPresent()) {
 			throw new IllegalStateException("이미 가입된 회원입니다.");
 		}

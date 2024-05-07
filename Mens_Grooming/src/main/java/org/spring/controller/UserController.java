@@ -81,21 +81,6 @@ public class UserController {
 			throw new MemoAPIException(ErrorCode.DUPLICATED_ENTITY, "이미 존재하는 멤버입니다");
 		}
 		
-		Member member = null;
-		member.setName(signUpDto.getName());
-		member.setEmail(signUpDto.getEmail());
-		member.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
-		member.setRole(AuthType.ROLE_USER);
-		
-		Auth auth = null;
-		auth.setUsername(signUpDto.getName());
-		auth.setAuth("ROLE_USER");
-		
-		// 왜 있는지 모르겠음. 나중에 필요하다고 판단되면 구현할것.
-		// biz.insertAuth(auth);
-		
-		member.addMemberRole(auth);
-		
 		return ResponseEntity.ok(biz.register(signUpDto));
 	}
 	

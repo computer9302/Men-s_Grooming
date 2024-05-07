@@ -17,7 +17,7 @@ public interface MemberDao {
 	public int join(MemberDto dto);
 	
 	//sns 회원가입
-	public int register(SignUpDto signUpDto);
+	public int register(Member member);
 	
 	//email 찾기
 	public Optional<Member> findByEmail(String email);
