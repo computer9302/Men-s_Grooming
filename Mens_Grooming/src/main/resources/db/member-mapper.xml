@@ -5,11 +5,12 @@
 	
 <mapper namespace="mymember">
 
+
 	<insert id="insert" parameterType="MemberDto">
 		INSERT INTO STSMEMBER
 		VALUES(#{member_id}, #{pass_word}, #{pass_word2}, #{address}, #{phone_number}, #{e_mail})
 	</insert>
-	
+
 	<insert id="insertSns" parameterType="signUpDto">
 		INSERT INTO OAUTH_USER_DETAILS
 		VALUES(#{name},#{password}, #{email})
