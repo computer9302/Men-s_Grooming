@@ -36,7 +36,7 @@ public class MemberDaoImpl implements MemberDao {
 		int res = 0;
 		
 		try {
-			res = SqlSession.insert(NAMESPACE + "insertSns",signUpDto);
+			res = SqlSession.insert(NAMESPACE + "insertSns",member);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
