@@ -6,6 +6,7 @@ import java.util.Base64.Encoder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,10 +33,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 		private final memberService memberService = null;
 	
+		private final UserDetailsService userDetailsService;
+		
+		@Autowired
+		public SecurityConfig(UserDetailsService userDetailsService) {
+			super();
+			this.userDetailsService = userDetailsService;
+		}
+
+
+
 		@Bean
 		public PasswordEncoder passwordEncoder() {
 			return new BCryptPasswordEncoder();
 		}
+		
+
 		
 		@Override
 		protected void configure(HttpSecurity http) throws Exception{

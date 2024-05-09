@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 
-// 참고 코드에 구현 클래스가 없음. 직접 구현해야함.
+// PrincipalDetails
 public interface UserDetails extends Serializable{
 
 	String getUsername();	// 사용자명 반환
