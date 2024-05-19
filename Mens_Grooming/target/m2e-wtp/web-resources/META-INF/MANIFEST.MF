@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Built-By: compu
-Build-Jdk: 17.0.2
+Built-By: gram
+Build-Jdk: 17.0.6
 Implementation-Title: Mens_Grooming
 Implementation-Version: 1.0.0-BUILD-SNAPSHOT
 Implementation-Vendor-Id: org.spring
