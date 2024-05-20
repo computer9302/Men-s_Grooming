@@ -19,7 +19,7 @@ public interface MemberBiz {
 	public int register(SignUpDto signUpDto);
 	
 	// email 찾기
-	public Optional<Member> findByEmail(String email);
+	public Member findByEmail(String email);
 	
 	public Member login(LoginDto loginDto);
 

@@ -23,4 +23,10 @@ public enum ErrorCode {
 		}
 
 		private final String errorMsg;
+
+		public String getErrorMsg() {
+			return errorMsg;
+		}
+		
+		
 }

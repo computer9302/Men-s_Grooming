@@ -45,8 +45,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public Optional<Member> findByEmail(String email){
-		Optional<Member> res = null;
+	public Member findByEmail(String email){
+		Member res = null;
 		
 		try {
 			res = SqlSession.selectOne(NAMESPACE + "select", email);

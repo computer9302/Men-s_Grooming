@@ -65,7 +65,7 @@ public class MemberBizImpl implements MemberBiz {
 	}
 	
 	@Override
-	public Optional<Member> findByEmail(String email){
+	public Member findByEmail(String email){
 		return dao.findByEmail(email);
 	}
 	

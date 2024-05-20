@@ -20,7 +20,7 @@ public interface MemberDao {
 	public int register(Member member);
 	
 	//email 찾기
-	public Optional<Member> findByEmail(String email);
+	public Member findByEmail(String email);
 	
 	// login
 	public Member login(LoginDto loginDto);
