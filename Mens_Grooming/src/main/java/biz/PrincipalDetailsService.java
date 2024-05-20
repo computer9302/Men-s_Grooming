@@ -1,5 +1,7 @@
 package biz;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,7 +31,7 @@ public class PrincipalDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
 		log.info("message");
-		Member member = biz.findByEmail(email);
+		Optional<Member> member = biz.findByEmail(email); //Optional의 정의에 의해서 member의 데이터 타입을 Optional<Member>로 한다.
 
 
 	}
