@@ -16,8 +16,8 @@
 		VALUES(#{name},#{password}, #{email})
 	</insert>
 
-	<select id="select" parameterType="Member">
-	SELECT * FROM OAUTH_USER_DETAILS
+	<select id="select" parameterType="string">
+	SELECT * FROM OAUTH_USER_DETAILS WHERE email = #{email}
 	</select>
 	
 	<select id="selectLogin" parameterType="LoginDto">

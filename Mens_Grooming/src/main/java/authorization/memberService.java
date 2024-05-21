@@ -26,7 +26,7 @@ public class memberService implements UserDetailsService{
 	}
 	
 	private void validateDuplicateMember(SignUpDto signUpDto) {
-		Optional<Member> byEmailOptional = memberRepository.findByEmail(signUpDto.getEmail());
+		Member byEmailOptional = memberRepository.findByEmail(signUpDto.getEmail());
 		if(byEmailOptional.isPresent()) {
 			throw new IllegalStateException("이미 가입된 회원입니다.");
 		}
