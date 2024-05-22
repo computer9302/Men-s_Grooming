@@ -40,7 +40,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
 	
-	private final AuthenticationManager authenticationManager=null;
+
 	private final MemberBiz biz;
 	private final PasswordEncoder passwordEncoder=null;
 
@@ -91,8 +91,6 @@ public class UserController {
 	@PostMapping(value = {"/login", "/signin"})
 	public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
 		
-	org.springframework.security.core.Authentication authentication = authenticationManager.authenticate(
-									new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
 									
 		return ResponseEntity.ok(biz.login(loginDto));
 	}

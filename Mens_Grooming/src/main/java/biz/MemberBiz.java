@@ -24,7 +24,7 @@ public interface MemberBiz {
 	// email 찾기
 	public Member findByEmail(String email);
 	
-	// sns 로그인
+	// sns 로그인x 이거는 security 라이브러리에 구현되어 있는듯. 얘 사용x
 	public Member login(LoginDto loginDto);
 
 	// 왜 있는지 모르겠음 나중에 필요하다고 판단되면 구현할 것.

@@ -5,6 +5,9 @@ import java.util.Optional;
 import org.h2.api.ErrorCode;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.approval.InMemoryApprovalStore;
 import org.springframework.stereotype.Repository;
@@ -32,6 +35,7 @@ public class MemberBizImpl implements MemberBiz {
 	private final MemberDao dao;
 	private final MemberBiz biz;
 	private final PasswordEncoder passwordEncoder=null;
+	private final AuthenticationManager authenticationManager=null;
 	
 	@Autowired
 	public MemberBizImpl(MemberDao dao, MemberBiz biz) {
@@ -77,6 +81,11 @@ public class MemberBizImpl implements MemberBiz {
 	}
 	
 	public Member login(LoginDto loginDto) {
+		
+		org.springframework.security.core.Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
+		
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 		return dao.login(loginDto);
 	}
 }
