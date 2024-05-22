@@ -88,4 +88,11 @@ public class MemberBizImpl implements MemberBiz {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		return dao.login(loginDto);
 	}
+
+
+	@Override
+	public Member read(String email) {
+		// TODO Auto-generated method stub
+		return dao.read(email);
+	}
 }

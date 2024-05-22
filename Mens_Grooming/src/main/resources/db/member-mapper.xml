@@ -30,5 +30,13 @@
 	FROM OAUTH_USER_DETAILS 
 	WHERE 1=1 and EMAIL=#{email} and PASSWORD=#{password}
 	</select>
+	
+	<select id="read" resultMap="Member">
+		select
+			m.id, m.name, m.email, m.password, m.createAt, m.auth
+		from member m
+		left outer join auth a on m.email = a.username
+		where m.email = #{email}
+	</select>
 
 </mapper>

@@ -80,4 +80,18 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return res;
 	}
+
+	@Override
+	public Member read(String email) {
+		// TODO Auto-generated method stub
+		Member res = null;
+		
+		try {
+			res = SqlSession.selectOne(NAMESPACE + "read" + email);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
 }

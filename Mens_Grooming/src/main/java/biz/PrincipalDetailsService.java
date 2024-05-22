@@ -35,7 +35,7 @@ public class PrincipalDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
 		
-		Member member = biz.findByEmail(email); //Optional의 정의에 의해서 member의 데이터 타입을 Optional<Member>로 한다.
+		Member member = biz.read(email); //Optional의 정의에 의해서 member의 데이터 타입을 Optional<Member>로 한다.
 		
 		if(member == null) {
 			throw new CustomException(ErrorCode.NOT_FOUND_USER);

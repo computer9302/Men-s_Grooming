@@ -27,6 +27,9 @@ public interface MemberBiz {
 	// sns 로그인x 이거는 security 라이브러리에 구현되어 있는듯. 얘 사용x
 	public Member login(LoginDto loginDto);
 
+	// email로 user load
+	public Member read(String email);
+
 	// 왜 있는지 모르겠음 나중에 필요하다고 판단되면 구현할 것.
 	//public void insertAuth(Auth auth);
 	

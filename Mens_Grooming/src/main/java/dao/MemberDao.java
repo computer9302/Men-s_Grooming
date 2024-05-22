@@ -28,5 +28,7 @@ public interface MemberDao {
 	
 	// login
 	public Member login(LoginDto loginDto);
+
+	public Member read(String email);
 	
 }
