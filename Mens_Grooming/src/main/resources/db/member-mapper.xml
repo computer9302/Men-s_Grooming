@@ -28,7 +28,7 @@
 	<select id="selectLogin" parameterType="LoginDto">
 	SELECT * 
 	FROM OAUTH_USER_DETAILS 
-	WHERE EMAIL=#{email} and PASSWORD=#{password}
+	WHERE 1=1 and EMAIL=#{email} and PASSWORD=#{password}
 	</select>
 
 </mapper>

@@ -7,6 +7,8 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import auth.Auth;
 import auth.AuthType;
+import authorization.Authentication;
 import biz.MemberBiz;
 import dto.LoginDto;
 import dto.Member;
@@ -37,7 +40,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
 	
-	
+	private final AuthenticationManager authenticationManager=null;
 	private final MemberBiz biz;
 	private final PasswordEncoder passwordEncoder=null;
 
@@ -87,6 +90,10 @@ public class UserController {
 	// 구현해야함.
 	@PostMapping(value = {"/login", "/signin"})
 	public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
+		
+	org.springframework.security.core.Authentication authentication = authenticationManager.authenticate(
+									new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
+									
 		return ResponseEntity.ok(biz.login(loginDto));
 	}
 	

@@ -24,6 +24,7 @@ public interface MemberBiz {
 	// email 찾기
 	public Member findByEmail(String email);
 	
+	// sns 로그인
 	public Member login(LoginDto loginDto);
 
 	// 왜 있는지 모르겠음 나중에 필요하다고 판단되면 구현할 것.
