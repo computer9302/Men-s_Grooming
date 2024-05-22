@@ -31,15 +31,11 @@ public class memberService implements UserDetailsService{
 			throw new IllegalStateException("이미 가입된 회원입니다.");
 		}
 	}
-	
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
-		Member findMember = memberRepository.findByEmail(email)
-				.orElseThrow(() -> new RuntimeException("no member"));
-	
-		return User.builder()
-					.username(findMember.getName())
-					.password(findMember.getPassword())
-					.roles(findMember.getRole().toString())
-					.build();
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 }

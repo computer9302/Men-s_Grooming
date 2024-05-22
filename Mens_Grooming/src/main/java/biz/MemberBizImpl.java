@@ -30,11 +30,13 @@ public class MemberBizImpl implements MemberBiz {
 	
 	
 	private final MemberDao dao;
+	private final MemberBiz biz;
 	private final PasswordEncoder passwordEncoder=null;
 	
 	@Autowired
-	public MemberBizImpl(MemberDao dao) {
+	public MemberBizImpl(MemberDao dao, MemberBiz biz) {
 		this.dao = dao;
+		this.biz = biz;
 	}
 
 
@@ -57,11 +59,16 @@ public class MemberBizImpl implements MemberBiz {
 		auth.setAuth("ROLE_USER");
 		
 		// 왜 있는지 모르겠음. 나중에 필요하다고 판단되면 구현할것.
-		// biz.insertAuth(auth);
+		// auth 테이블을 참조해서 oauth_user_details의 auth 외래키에 값을 저장해야함.
+		biz.insertAuth(auth);
 		
 		member.addMemberRole(auth);
 		
 		return dao.register(member);
+	}
+	
+	public void insertAuth(Auth auth) {
+		dao.insertAuth(auth);
 	}
 	
 	@Override

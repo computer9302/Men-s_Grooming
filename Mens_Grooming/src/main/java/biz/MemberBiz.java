@@ -18,6 +18,9 @@ public interface MemberBiz {
 	// sns 회원가입
 	public int register(SignUpDto signUpDto);
 	
+	// auth 저장
+	public void insertAuth(Auth auth);
+	
 	// email 찾기
 	public Member findByEmail(String email);
 	

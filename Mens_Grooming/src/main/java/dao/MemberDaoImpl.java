@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import auth.Auth;
 import dto.LoginDto;
 import dto.Member;
 import dto.MemberDto;
@@ -42,6 +43,17 @@ public class MemberDaoImpl implements MemberDao {
 			e.printStackTrace();
 		}
 		return res;
+	}
+	
+	public void insertAuth(Auth auth) {
+		int res=0;
+		
+		try {
+			res = SqlSession.insert(NAMESPACE + "insertAuth", auth);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 	
 	@Override

@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import auth.Auth;
 import dto.LoginDto;
 import dto.Member;
 import dto.MemberDto;
@@ -18,6 +19,9 @@ public interface MemberDao {
 	
 	//sns 회원가입
 	public int register(Member member);
+	
+	// auth 저장
+	public void insertAuth(Auth auth);
 	
 	//email 찾기
 	public Member findByEmail(String email);

@@ -12,8 +12,13 @@
 	</insert>
 
 	<insert id="insertSns" parameterType="signUpDto">
-		INSERT INTO OAUTH_USER_DETAILS
-		VALUES(#{name},#{password}, #{email})
+		INSERT INTO OAUTH_USER_DETAILS (id, name, email, password, createdAt, auth)
+		VALUES(null, #{name},#{email}, #{password}, NOW(), #{auth})
+	</insert>
+	
+	<insert id="insertAuth">
+		insert into auth (username, auth)
+		VALUES (#{username}, #{auth})
 	</insert>
 
 	<select id="select" parameterType="string">
