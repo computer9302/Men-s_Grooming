@@ -36,12 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 		private final PrincipalDetailsService principalDetailsService;
 		private final UserDetailsService userDetailsService;
+		private final CustomOAuth2UserService customOAuth2UserService;
 		
 		@Autowired
-		public SecurityConfig(UserDetailsService userDetailsService, PrincipalDetailsService principalDetailsService) {
+		public SecurityConfig(UserDetailsService userDetailsService, PrincipalDetailsService principalDetailsService, CustomOAuth2UserService customOAuth2UserService) {
 			super();
 			this.userDetailsService = userDetailsService;
 			this.principalDetailsService = principalDetailsService;
+			this.customOAuth2UserService = customOAuth2UserService;
 		}
 
 
@@ -68,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			
 			http.oauth2Login()
 					.userInfoEndpoint()
-					.userService(principalDetailsService);
+					.userService(customOAuth2UserService);
 		}
 		
 		@Override
