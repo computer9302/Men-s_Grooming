@@ -23,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import biz.PrincipalDetailsService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
@@ -33,12 +34,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 		private final memberService memberService = null;
 	
+		private final PrincipalDetailsService principalDetailsService;
 		private final UserDetailsService userDetailsService;
 		
 		@Autowired
-		public SecurityConfig(UserDetailsService userDetailsService) {
+		public SecurityConfig(UserDetailsService userDetailsService, PrincipalDetailsService principalDetailsService) {
 			super();
 			this.userDetailsService = userDetailsService;
+			this.principalDetailsService = principalDetailsService;
 		}
 
 
@@ -62,6 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
 				.logoutSuccessUrl("/");
+			
+			http.oauth2Login()
+					.userInfoEndpoint()
+					.userService(principalDetailsService);
 		}
 		
 		@Override
