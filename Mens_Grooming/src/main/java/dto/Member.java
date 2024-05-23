@@ -2,9 +2,12 @@ package dto;
 
 import java.security.Timestamp;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.Resource.AuthenticationType;
+
+import org.springframework.security.core.GrantedAuthority;
 
 import auth.Auth;
 import auth.AuthType;
@@ -29,7 +32,7 @@ public class Member {
 	private AuthType role;
 	
 	//id 한개에 권한이 여러개일 이유가 없는데 왜 arrayList인가?
-	private List<Auth> authList = new ArrayList<>();
+	private List<Auth> authList = new ArrayList<Auth>();
 
 	public Long getId() {
 		return id;

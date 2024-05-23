@@ -1,6 +1,8 @@
 package authorization;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -9,8 +11,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import auth.Auth;
+import auth.AuthType;
 import dto.Member;
 import lombok.Getter;
+import java.util.stream.*;
 
 @Getter
 public class PrincipalDetail implements OAuth2User, UserDetails{
@@ -52,6 +57,16 @@ public class PrincipalDetail implements OAuth2User, UserDetails{
 		// TODO Auto-generated method stub
 		return member.getPassword();
 	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		for(Auth auth : member.getAuthList()) {
+			authorities.add(new SimpleGrantedAuthority(auth.getAuth()));
+		}
+		return authorities;
+	}
 
 	@Override
 	public boolean isEnabled() {
@@ -77,9 +92,6 @@ public class PrincipalDetail implements OAuth2User, UserDetails{
 		return false;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return member.getRole();
-	}
+
+
 }

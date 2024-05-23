@@ -20,7 +20,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException{
 		OAuth2User oAuth2User = delegate.loadUser(userRequest);
-		String email = oAuth2User.getAttributes();
+		String email = (String)oAuth2User.getAttributes().get("email");
 		
 		if(email == null) {
 			throw new CustomException(ErrorCode.NOT_FOUND_USER);
