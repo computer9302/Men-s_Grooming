@@ -28,7 +28,7 @@
 	<logger name="com.nextday.geteway" level="INFO">
 		<appender-ref ref="DAILY_ROLLING_FILE_APPENDER"></appender-ref>
 	</logger>
-	<root level="INFO">
+	<root level="info">
 		<appender-ref ref="STDOUT"></appender-ref>
 	</root>
 	

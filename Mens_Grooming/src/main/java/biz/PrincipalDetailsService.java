@@ -13,14 +13,12 @@ import authorization.PrincipalDetail;
 import common.CustomException;
 import dto.Member;
 import exception.ErrorCode;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class PrincipalDetailsService implements UserDetailsService{
 
 	
