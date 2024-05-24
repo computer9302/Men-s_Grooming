@@ -16,7 +16,7 @@ public interface MemberBiz {
 	public int join(MemberDto dto);
 	
 	// sns 회원가입
-	public int register(SignUpDto signUpDto);
+	public int register(Member member);
 	
 	// auth 저장
 	public void insertAuth(Auth auth);
