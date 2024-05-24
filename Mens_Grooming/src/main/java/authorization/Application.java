@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Application {
-
-	private static final Logger log = LoggerFactory.getLogger(Application.class);
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
