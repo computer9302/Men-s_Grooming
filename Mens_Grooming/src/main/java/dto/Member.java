@@ -11,11 +11,13 @@ import org.springframework.security.core.GrantedAuthority;
 
 import auth.Auth;
 import auth.AuthType;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 @Data
+@Builder
 @NoArgsConstructor
 public class Member {
 	
@@ -34,6 +36,18 @@ public class Member {
 	//id 한개에 권한이 여러개일 이유가 없는데 왜 arrayList인가?
 	private List<Auth> authList = new ArrayList<Auth>();
 
+	public Member(Long id, String name, String email, String password, Timestamp createdAt, AuthType role,
+			List<Auth> authList) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.createdAt = createdAt;
+		this.role = role;
+		this.authList = authList;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -93,5 +107,7 @@ public class Member {
 	public void addMemberRole(Auth auth) {
 		authList.add(auth);
 	}
+
+
 	
 }

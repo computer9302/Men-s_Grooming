@@ -22,7 +22,7 @@ public interface MemberBiz {
 	public void insertAuth(Auth auth);
 	
 	// email 찾기
-	public Member findByEmail(String email);
+	public Optional<Member> findByEmail(String email);
 	
 	// sns 로그인x 이거는 security 라이브러리에 구현되어 있는듯. 얘 사용x
 	public Member login(LoginDto loginDto);

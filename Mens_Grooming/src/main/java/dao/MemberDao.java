@@ -24,7 +24,7 @@ public interface MemberDao {
 	public void insertAuth(Auth auth);
 	
 	//email 찾기
-	public Member findByEmail(String email);
+	public Optional<Member> findByEmail(String email);
 	
 	// login
 	public Member login(LoginDto loginDto);

@@ -13,15 +13,13 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import dto.Member;
 import dto.User;
 import info.FacebookUserInfo;
 import info.GoogleUserInfo;
 import info.OAuth2UserInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-
-
 
 @Slf4j
 @Service
@@ -47,11 +45,11 @@ public class OAuth2UserService extends DefaultOAuth2UserService{
 		
 		if(clientRegistration.getRegistrationId().equals("google")) {
 			log.info("구글 로그인 요청");
-			oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAuthorities());
+			oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
 			log.info("oAuth2UserInfo: {}", oAuth2UserInfo);
 		}else if(clientRegistration.getRegistrationId().equals("facebook")) {
 			log.info("페이스북 로그인 요청");
-			oAuth2UserInfo = new FacebookUserInfo(oAuth2User.getAuthorities());
+			oAuth2UserInfo = new FacebookUserInfo(oAuth2User.getAttributes());
 		}else {
 			log.info("우리는 구글과 페이스북만 지원합니다.");
 		}
@@ -60,20 +58,20 @@ public class OAuth2UserService extends DefaultOAuth2UserService{
 		String name = oAuth2UserInfo.getName();
 		log.info("email: {}", email);
 		log.info("name: {}", name);
-		Optional<User> optionalUser = biz.findByEmail(email);
+		Optional<Member> optionalUser = biz.findByEmail(email);
 		
-		User user = null;
+		Member member = null;
 		if(optionalUser.isPresent()) {
 			log.info("로그인을 이미 했음, 자동회원가입이 되어있다.");
 		}else {
-			user = User.builder()
+			member = Member.builder()
 					.name(name)
 					.email(email)
 					// password ecode 처리는 controller에 처리하는게 나을 것 같음.
 					.password("githere")
 					.build();
 		
-			biz.register(user);
+			biz.register(member);
 		}
 	return oAuth2User;
 	}

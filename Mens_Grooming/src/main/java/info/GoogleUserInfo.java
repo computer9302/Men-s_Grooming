@@ -1,6 +1,9 @@
 package info;
 
+import java.util.Collection;
 import java.util.Map;
+
+import org.springframework.security.core.GrantedAuthority;
 
 import lombok.Data;
 
@@ -8,7 +11,7 @@ import lombok.Data;
 public class GoogleUserInfo implements OAuth2UserInfo{
 	
 	private Map<String, Object> attributes;
-
+	
 	public GoogleUserInfo(Map<String, Object> attributes) {
 		super();
 		this.attributes = attributes;
@@ -37,6 +40,8 @@ public class GoogleUserInfo implements OAuth2UserInfo{
 		// TODO Auto-generated method stub
 		return (String)attributes.get("name");
 	}
+
+
 	
 	
 }
