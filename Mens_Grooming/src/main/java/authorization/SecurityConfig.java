@@ -29,24 +29,17 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 		private final memberService memberService = null;
 	
-		private final PrincipalDetailsService principalDetailsService;
-		private final UserDetailsService userDetailsService;
 		private final CustomOAuth2UserService customOAuth2UserService;
 		
 		@Autowired
-		public SecurityConfig(UserDetailsService userDetailsService, PrincipalDetailsService principalDetailsService, CustomOAuth2UserService customOAuth2UserService) {
+		public SecurityConfig(CustomOAuth2UserService customOAuth2UserService) {
 			super();
-			this.userDetailsService = userDetailsService;
-			this.principalDetailsService = principalDetailsService;
 			this.customOAuth2UserService = customOAuth2UserService;
 		}
-
-
 
 		@Bean
 		public PasswordEncoder passwordEncoder() {

@@ -19,14 +19,14 @@ public class memberService implements UserDetailsService{
 	
 	private final MemberBiz memberRepository = null;
 	
-	public void saveMember(SignUpDto signUpDto) {
+	public void saveMember(Member member) {
 		
-		validateDuplicateMember(signUpDto);
-		memberRepository.register(signUpDto);
+		validateDuplicateMember(member);
+		memberRepository.register(member);
 	}
 	
-	private void validateDuplicateMember(SignUpDto signUpDto) {
-		Optional<Member> byEmailOptional = Optional.ofNullable(memberRepository.findByEmail(signUpDto.getEmail()));
+	private void validateDuplicateMember(Member member) {
+		Optional<Member> byEmailOptional = memberRepository.findByEmail(member.getEmail());
 		if(byEmailOptional.isPresent()) {
 			throw new IllegalStateException("이미 가입된 회원입니다.");
 		}
