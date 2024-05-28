@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 import auth.Auth;
@@ -92,6 +93,20 @@ public class MemberDaoImpl implements MemberDao {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		return res;
+	}
+
+	@Override
+	public User findByUsername(String username) {
+		// TODO Auto-generated method stub
+		User res = null;
+		
+		try {
+			res = SqlSession.selectOne(NAMESPACE + "findByUsername" + username);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return res;
 	}
 }

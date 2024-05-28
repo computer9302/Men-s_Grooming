@@ -35,6 +35,10 @@ public class memberService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
+		User user = memberRepository.findByUsername(username);
+		if(user == null) {
+			throw new UsernameNotFoundException("User not found with username: " + username);
+		}
 		return null;
 	}
 	

@@ -36,13 +36,6 @@ public class MemberBizImpl implements MemberBiz {
 	private final MemberBiz biz;
 	private final PasswordEncoder passwordEncoder=null;
 	private final AuthenticationManager authenticationManager=null;
-	
-	@Autowired
-	public MemberBizImpl(MemberDao dao, MemberBiz biz) {
-		this.dao = dao;
-		this.biz = biz;
-	}
-
 
 	@Override
 	public int join(MemberDto dto) {
@@ -50,16 +43,15 @@ public class MemberBizImpl implements MemberBiz {
 	}
 	
 	@Override
-	public int register(SignUpDto signUpDto) {
+	public int register(Member member) {
 		
-		Member member = null;
-		member.setName(signUpDto.getName());
-		member.setEmail(signUpDto.getEmail());
-		member.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
+		member.setName(member.getName());
+		member.setEmail(member.getEmail());
+		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		member.setRole(AuthType.ROLE_USER);
 		
 		Auth auth = null;
-		auth.setUsername(signUpDto.getName());
+		auth.setUsername(member.getName());
 		auth.setAuth("ROLE_USER");
 		
 		// 왜 있는지 모르겠음. 나중에 필요하다고 판단되면 구현할것.
@@ -94,5 +86,11 @@ public class MemberBizImpl implements MemberBiz {
 	public Member read(String email) {
 		// TODO Auto-generated method stub
 		return dao.read(email);
+	}
+
+	@Override
+	public org.springframework.security.core.userdetails.User findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return dao.findByUsername(username);
 	}
 }

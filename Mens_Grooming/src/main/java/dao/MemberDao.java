@@ -2,6 +2,7 @@ package dao;
 
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 import auth.Auth;
@@ -30,5 +31,7 @@ public interface MemberDao {
 	public Member login(LoginDto loginDto);
 
 	public Member read(String email);
+
+	public User findByUsername(String username);
 	
 }

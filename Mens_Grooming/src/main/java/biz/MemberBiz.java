@@ -2,6 +2,7 @@ package biz;
 
 import java.util.Optional;
 
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import auth.Auth;
@@ -29,6 +30,8 @@ public interface MemberBiz {
 
 	// email로 user load
 	public Member read(String email);
+
+	public User findByUsername(String username);
 
 	// 왜 있는지 모르겠음 나중에 필요하다고 판단되면 구현할 것.
 	//public void insertAuth(Auth auth);

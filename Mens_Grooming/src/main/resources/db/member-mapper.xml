@@ -38,5 +38,9 @@
 		left outer join auth a on m.email = a.username
 		where m.email = #{email}
 	</select>
+	
+	<select>
+	
+	</select>
 
 </mapper>

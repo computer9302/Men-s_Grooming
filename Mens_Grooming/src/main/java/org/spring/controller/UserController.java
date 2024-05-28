@@ -38,7 +38,6 @@ import lombok.RequiredArgsConstructor;
  */
 @RequestMapping("/api/v1/user")
 @Controller
-@RequiredArgsConstructor
 public class UserController {
 	
 
